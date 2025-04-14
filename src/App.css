@@ -1,0 +1,167 @@
+/* Reset and base styles */
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Main App container */
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 100px; /* account for fixed top banner */
+}
+
+/* Optional logo animation (if used) */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Confetti background overlay */
+.confetti-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://cdn.pixabay.com/photo/2017/10/10/21/46/confetti-2835251_960_720.png');
+  background-size: cover;
+  opacity: 0.2;
+  z-index: 0;
+  animation: float 10s infinite linear;
+}
+@keyframes float {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1000px; }
+}
+
+/* Main content above background */
+.content {
+  z-index: 2;
+}
+
+/* Headline styling */
+
+
+/* Subtext below headline */
+.subtext {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #ccc;
+}
+
+/* Button style */
+.btn {
+  padding: 0.75rem 1.5rem;
+  background: #ff4081;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.page-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 4rem;
+  height: 90%;
+  width: -webkit-fill-available;
+  position: relative;
+  z-index: 2;
+}
+
+.left-text {
+  color: white;
+  font-size: 2rem;
+  text-align: left;
+  max-width: 40%;
+}
+
+.right-box {
+  width: 300px;
+  background: rgba(93, 91, 184, 0.486);
+  border: 2px dashed #27e6ff;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  padding: 15px;
+  align-content: center;
+  overflow: hidden;
+}
+.right-box img {
+  width: 95%;
+}
+
+.kiss {
+  position: absolute;
+  font-size: 2.5rem;
+  pointer-events: none;
+  animation: blowKiss 2s ease-in-out forwards;
+  z-index: 20;
+}
+
+@keyframes blowKiss {
+  0% {
+    transform: scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5) rotate(20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-10deg) translateY(-100px);
+    opacity: 0;
+  }
+}
+
+.love-footer {
+  margin-top: 3rem;
+  font-size: 0.95rem;
+  color: #ff88bb;
+  font-family: 'Poppins', sans-serif;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in;
+}
+
+.love-footer .heart {
+  color: #ff4f81;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
