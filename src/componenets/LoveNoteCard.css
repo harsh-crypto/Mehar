@@ -7,9 +7,10 @@
     gap: 2rem;
     color: #fff;
     font-family: 'Poppins', sans-serif;
-    box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+    box-shadow: 0 0 20px rgb(255 67 210 / 20%);
     max-width: 900px;
     margin: auto;
+    margin-top: 2rem;
     align-items: flex-start;
   }
   
