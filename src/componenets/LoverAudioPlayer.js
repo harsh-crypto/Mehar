@@ -2,13 +2,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./LoverAudioPlayer.css";
 
-const LoverAudioPlayer = ({ isMuted: externallyMuted = false }) => {
+const LoverAudioPlayer = ({ isMuted: externallyMuted }) => {
   const iframeRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
 
-  // Sync internal mute state with external control
+  // Sync external mute change
   useEffect(() => {
-    if (iframeRef.current && externallyMuted !== isMuted) {
+    if (iframeRef.current && typeof externallyMuted === "boolean") {
       iframeRef.current.contentWindow.postMessage(
         JSON.stringify({
           event: "command",
@@ -19,21 +19,24 @@ const LoverAudioPlayer = ({ isMuted: externallyMuted = false }) => {
       );
       setIsMuted(externallyMuted);
     }
-  }, [externallyMuted, isMuted]);
+  }, [externallyMuted]);
 
+  // Toggle mute on button click
   const toggleMute = () => {
     const iframe = iframeRef.current;
     if (!iframe) return;
 
+    const nextMuted = !isMuted;
+
     iframe.contentWindow.postMessage(
       JSON.stringify({
         event: "command",
-        func: isMuted ? "unMute" : "mute",
+        func: nextMuted ? "mute" : "unMute",
         args: [],
       }),
       "*"
     );
-    setIsMuted((prev) => !prev);
+    setIsMuted(nextMuted);
   };
 
   return (

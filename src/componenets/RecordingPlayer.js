@@ -2,7 +2,7 @@
 import React, { useRef, useState } from 'react';
 import './RecordingPlayer.css';
 
-const RecordingPlayer = ({ audioSrc, onRecordingPlay, onRecordingPause }) => {
+const RecordingPlayer = ({ audioSrc, onPlay, onPause }) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -11,13 +11,13 @@ const RecordingPlayer = ({ audioSrc, onRecordingPlay, onRecordingPause }) => {
 
     if (isPlaying) {
       audioRef.current.pause();
-      setIsPlaying(false);
-      onRecordingPause?.(); // unmute music
+      onPause && onPause();
     } else {
       audioRef.current.play();
-      setIsPlaying(true);
-      onRecordingPlay?.(); // mute music
+      onPlay && onPlay();
     }
+
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -29,5 +29,6 @@ const RecordingPlayer = ({ audioSrc, onRecordingPlay, onRecordingPause }) => {
     </div>
   );
 };
+
 
 export default RecordingPlayer;
