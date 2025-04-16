@@ -42,14 +42,14 @@ const LoverAudioPlayer = ({ isMuted: externallyMuted }) => {
   return (
     <div className="audio-player-wrapper">
       <iframe
-        ref={iframeRef}
-        className="audio-iframe"
-        title="Lover by Taylor Swift"
-        width="0"
-        height="0"
-        src="https://www.youtube.com/embed/-BjZmE2gtdo?autoplay=1&loop=1&playlist=-BjZmE2gtdo&mute=1&enablejsapi=1"
-        allow="autoplay"
-      />
+  ref={iframeRef}
+  className="audio-iframe"
+  title="Call It What You Want by Taylor Swift"
+  width="0"
+  height="0"
+  src="https://www.youtube.com/embed/nP5ykUoQlQI?autoplay=1&loop=1&playlist=nP5ykUoQlQI&mute=1&enablejsapi=1"
+  allow="autoplay"
+/>
       <button className="mute-btn" onClick={toggleMute}>
         {isMuted ? "🔇 Unmute" : "🔊 Mute"}
       </button>
