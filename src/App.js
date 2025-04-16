@@ -4,9 +4,10 @@ import confetti from "canvas-confetti";
 import ContinuousSlider from "./componenets/ContinousSlider";
 import LoveNoteCard from "./componenets/LoveNoteCard";
 import LoverAudioPlayer from "./componenets/LoverAudioPlayer";
+import RecordingPlayer from "./componenets/RecordingPlayer";
 
 // Image imports
-import bdaygirl from "./images/Snapchat-1490632394.jpg";
+import bdaygirl from "./images/IMG-20250414-WA0026.jpg";
 import imageMeharOct9 from "./images/IMG20241009150442.jpg";
 import imageCookies from "./images/Snapchat-66705658.jpg";
 import imageSundarNursery from "./images/IMG20241026155249.jpg";
@@ -19,9 +20,11 @@ import imageNewYear from "./images/IMG20241231160206.jpg";
 import imageFirstDay from "./images/IMG20250117183129.jpg";
 import imageMallStroll from "./images/IMG20250207172522_01.jpg";
 import imageParkFlowers from "./images/IMG20250220171114.jpg";
+import imageMohit from "./images/IMG20250328162845.jpg";
+import recording from "./images/Recording.m4a";
 
-import collage1 from './images/collage1.jpg';
-import collage2 from './images/collage2.jpg';
+import collage1 from './images/Collage6.jpg';
+import collage2 from './images/Collage4.jpg';
 
 
 function useInView(options) {
@@ -41,6 +44,7 @@ function useInView(options) {
 }
 
 function App() {
+  const [isMusicMuted, setIsMusicMuted] = useState(false);
   const [kisses, setKisses] = useState([]);
   const [finalRef, isFinalVisibleNow] = useInView({ threshold: 0.3 });
 const [isFinalVisible, setFinalVisible] = useState(false);
@@ -94,9 +98,17 @@ useEffect(() => {
         <div className="left-text">
           <h1 className="headline">Happy Birthday<br />Mehar ❤️❤️❤️</h1>
           <p className="subtext">It feels like it was yesterday when we met and fell in love but its already your birthday and I am so happy that we went so ahead with each other and share this day together. I have put together some photos to relive some moment with our time together. Hope youl'l like it.</p>
+          <span className="button-record">
           <button className="btn" onClick={handleSendKisses}>
             Tap on me!😊
           </button>
+          <RecordingPlayer 
+  audioSrc={recording} 
+  onPlay={() => setIsMusicMuted(true)} 
+  onPause={() => setIsMusicMuted(false)} 
+/>
+    </span>
+
         </div>
         <div className="right-box">
           { <img src={bdaygirl} alt="my love"></img>}
@@ -151,7 +163,7 @@ useEffect(() => {
       />
       <LoveNoteCard
         date="December 07, 2024"
-        message="The enchanting feeling of christams, christmas songs, food and amazing company with me. This day is one of the most enjoyable day of my Life!!! I could only imagine such enthusiasm about anything until that day,  you and me. Italy embassy was made an amazing place for me and I could not imagine anything better than this festival."
+        message="The enchanting feeling of christams, christmas songs, food and amazing company with me. This day is one of the most enjoyable day of my Life!!! I could only imagine such enthusiasm about anything until that day,  you and me. Italy embassy was made an amazing place for me and I could not imagine anything better than this festival. On our way back to home in the metro you slept on my shoulder, that moment was sooo beautiful to me I am still getting flusterred and soo cute that you were sleeping on me. And I will keep my shoulder down for your to lean on my love. ❤️"
         imageUrl={imageChristmas}
       />
       <LoveNoteCard
@@ -165,19 +177,24 @@ useEffect(() => {
         imageUrl={imageNewYear}
       />
       <LoveNoteCard
-        date="January 17, 2024"
+        date="January 17, 2025"
         message="After the 2024, we met on this day shared the first day ever with our selves and the best feeling of all time, the plans sudden pictures makes it memorable and most importantly! I could only be happy with your presence. I love you even more than this day today , and tomorrow itll be more than today. ❤️"
         imageUrl={imageFirstDay}
       />
       <LoveNoteCard
-        date="February 07, 2024"
+        date="February 07, 2025"
         message="Bhai, this picture I am attaching here is soooo cute, youre cute everything about you is cute and I cannot stop loving you here. The first mall stroll made me realize how much in the world that I wanna give you. There was a dress here IG, that I  want to see on you and I have that in my mind but I couldnt recall, soo I need to go again with you. This day was also the day I started to see that our experiences might differ and still we can love each other. and this photo I  will remember I gotta take you to an adventure sport ever and be the part of it or at least keep you besides me and cheer for me atleast 😂❤️"
         imageUrl={imageMallStroll}
       />
       <LoveNoteCard
-        date="February 20, 2024"
+        date="February 20, 2025"
         message="Oh, it actually started here I guess, we taking long breaks from seeing each other lol, after a month I was releived with you, I was tired of the hectic month, but you and your company fade it all away, the parka dnd the flowers in the park made the experience supreme and you, ufff the best girl in the town. You are looking sooo beautiful in the pictures today. I can only wish that I keep on clicking pictures for you. you are dazzlin and blooming today and I couldnt stop looking at you my love. I love you sooo much ❤️"
         imageUrl={imageParkFlowers}
+      />
+      <LoveNoteCard
+        date="March 28, 2025"
+        message="Well, this was the first time I feared the furious you, and I still am regretting this day that it started with a niche situation. The entry for the concert and the time was actually better as it was for free lol. But I can reallybe staying there for years with you because when the sun got down and mic got up and Mohit sang the best of the tones for us. I could see you dancing calmly, see you enjoying, experiencing the breeze and all I could be more inclined to be loving you more and more. I am sorry, adn also gratefull for that day. Thank you soo much for attending the first concert for that day baby. I really cherish this memory with my heart and more to come."
+        imageUrl={imageMohit}
       />
       <div ref={finalRef} className={`final-note-section ${isFinalVisible ? 'fade-in' : ''}`}>
   <h2 className="final-note-title">Final Note 💌</h2>
@@ -193,7 +210,7 @@ useEffect(() => {
   </p>
 </div>
 
-        <LoverAudioPlayer />
+        <LoverAudioPlayer isMuted={isMusicMuted} />
         {/* ❤️ Footer */}
         <footer className="love-footer">
         Made with <span className="heart">❤️</span> by Harsh Malik

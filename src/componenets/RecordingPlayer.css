@@ -1,0 +1,22 @@
+.recording-player {
+    text-align: center;
+  }
+  
+  .recording-button {
+    background: #ffb3d9;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 20px;
+    color: #4b0055;
+    font-weight: bold;
+    box-shadow: 0 0 10px #f0a0ff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .recording-button:hover {
+    background: #ffa4d0;
+    transform: scale(1.05);
+  }
+  

@@ -1,16 +1,30 @@
 // src/components/LoverAudioPlayer.js
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./LoverAudioPlayer.css";
 
-const LoverAudioPlayer = () => {
+const LoverAudioPlayer = ({ isMuted: externallyMuted = false }) => {
   const iframeRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
+
+  // Sync internal mute state with external control
+  useEffect(() => {
+    if (iframeRef.current && externallyMuted !== isMuted) {
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({
+          event: "command",
+          func: externallyMuted ? "mute" : "unMute",
+          args: [],
+        }),
+        "*"
+      );
+      setIsMuted(externallyMuted);
+    }
+  }, [externallyMuted, isMuted]);
 
   const toggleMute = () => {
     const iframe = iframeRef.current;
     if (!iframe) return;
 
-    // postMessage to YouTube API to mute/unmute
     iframe.contentWindow.postMessage(
       JSON.stringify({
         event: "command",
@@ -19,7 +33,7 @@ const LoverAudioPlayer = () => {
       }),
       "*"
     );
-    setIsMuted(prev => !prev);
+    setIsMuted((prev) => !prev);
   };
 
   return (
